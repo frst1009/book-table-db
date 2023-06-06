@@ -11,8 +11,6 @@ db.connect();
 app.use(express.json())
 
 app.use('/api/book', bookRoutes)
-
-
 app.use('/api/writer', writerRoutes)
 app.use('/api/country', countryRoutes)
 

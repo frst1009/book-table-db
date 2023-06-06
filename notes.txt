@@ -1,0 +1,1 @@
+CONNECT="mongodb+srv://ilahaeshu:E83U1GSN8C5eOnVZ@cluster0.ehxhrlt.mongodb.net/frontenddb"
