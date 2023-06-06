@@ -1,8 +1,14 @@
-const { Country } = require("../models/country");
+const {Book} =require("../models/book");
 
-const countryController = {
+const bookController = {
     getAll: (req, res) => {
-        Writer.find()
+        Book.find()
+            .populate({
+                path: "writer",
+                populate:{
+                    path:"country",
+                },
+            })
             .then(data => {
                 res.json(data);
             })
@@ -14,7 +20,7 @@ const countryController = {
     getById: (req, res) => {
         let id = req.params.id;
 
-        Country.findById(id)
+        Book.findById(id).populate("writer")
             .then(data => {
                 if (data)
                     res.json(data);
@@ -26,18 +32,21 @@ const countryController = {
             })
     },
     add: (req, res) => {
-        let country = new Country({
+        let book = new Book({
             name: req.body.name,
+            description: req.body.description,
+            publishDate: req.body.publishDate,
+            writer: req.body.writer
         })
 
-        country.save();
+        book.save();
 
-        res.json(country);
+        res.json(book);
     },
     delete: (req, res) => {
         let id = req.params.id;
 
-       Country.delete(id)
+       Book.delete(id)
             .then(data => {
                 res.json(data);
             })
@@ -45,5 +54,5 @@ const countryController = {
                 res.status(500).json(err)
             })
     }
-}
-module.exports = { countryController }
+       }
+        module.exports={bookController}
