@@ -3,6 +3,7 @@ const { Country } = require("../models/country");
 const countryController = {
     getAll: (req, res) => {
         Country.find()
+         // .limit(10)
             .then(data => {
                 res.json(data);
             })

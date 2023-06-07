@@ -3,6 +3,7 @@ const {Book} =require("../models/book");
 const bookController = {
     getAll: (req, res) => {
         Book.find()
+        // .limit(10)
             .populate({
                 path: "writer",
                 populate:{

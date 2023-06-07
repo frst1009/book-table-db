@@ -3,6 +3,7 @@ const { Writer } = require("../models/writer");
 const writerController = {
     getAll: (req, res) => {
         Writer.find()
+         // .limit(10)
             .populate("country")
             .then(data => {
                 res.json(data);
